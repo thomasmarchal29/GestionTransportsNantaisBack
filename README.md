@@ -72,9 +72,8 @@ Maven - Dependency Management
 
 ## Authors
 
-Fouillet Cédric - Initial work - CedricNF
-
-Marchal Thomas - Initial work - thomasmarchal29
+* **Fouillet Cédric** - *Initial work* - [CedricNF](https://github.com/CedricNF)
+* **Marchal Thomas** - *Initial work* - [thomasmarchal29](https://github.com/thomasmarchal29)
 
 ## License
 
