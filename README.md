@@ -18,13 +18,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 To install and run this project you need as requirements:
 
-Java JDK and JRE - Java 8 or higher version
-
-Maven - Maven 2 or higher version
-
-Eclipse - 2019-09 R (4.13.0) version
-
-XAMPP - v3.4.2 or any other database management system
+* [Java JDK and JRE](https://www.java.com/fr/download/) - Java 8 or higher version
+* [Maven](https://maven.apache.org/) - Maven 2 or higher version
+* [Eclipse](https://www.eclipse.org/) - 2019-09 R (4.13.0) version
+* [XAMPP](https://www.apachefriends.org/fr/index.html) - v3.4.2 or any other database management system
 
 ### Setting up
 
