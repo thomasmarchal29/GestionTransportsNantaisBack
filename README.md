@@ -19,8 +19,11 @@ These instructions will get you a copy of the project up and running on your loc
 To install and run this project you need as requirements:
 
 Java JDK and JRE - Java 8 or higher version
+
 Maven - Maven 2 or higher version
+
 Eclipse - 2019-09 R (4.13.0) version
+
 XAMPP - v3.4.2 or any other database management system
 
 ### Setting up
@@ -38,24 +41,31 @@ $ mvn test
 ## Installing
 
 To install the project use the next command:
+
 $ mvn install
 
 ## Running
 
 To run the project use the next command:
+
 $ mvn spring-boot:run
 
 ## Technologies
 
 Java EE - The web framework used
+
 Spring Boot - The framework used for Microservice Architecture
+
 Spring Data JPA - The framework used in the persistence Layer
+
 Spring WebService - The framework used in the Rest Controller Layer
+
 Maven - Dependency Management
 
 ## Authors
 
 Fouillet Cédric - Initial work - CedricNF
+
 Marchal Thomas - Initial work - thomasmarchal29
 
 ## License
