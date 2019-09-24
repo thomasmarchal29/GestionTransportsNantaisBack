@@ -21,7 +21,7 @@ public class EmployeService implements IEmployeService {
 	}
 
 	@Override
-	public Employe findById(int idEmploye) {
+	public Employe findById(Long idEmploye) {
 		return employeRepository.findById(idEmploye).orElse(null);
 	}
 	
@@ -31,8 +31,14 @@ public class EmployeService implements IEmployeService {
 	}
 
 	@Override
-	public void deleteById(int idEmploye) {
+	public void deleteById(Long idEmploye) {
 		employeRepository.deleteById(idEmploye);
 	}
 
+	@Override
+	public Employe findOneByUsername(String username) {
+		return employeRepository.findOneByUsername(username);
+	}
+
+	
 }

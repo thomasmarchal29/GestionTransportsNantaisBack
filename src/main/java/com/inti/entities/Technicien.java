@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
 @Entity
@@ -13,19 +14,23 @@ import javax.persistence.ManyToMany;
 public class Technicien extends Employe {
 	
 	private String diplome;
-	private String habilitationTechnique;
+	@Column(name = "habilitationTechnique")
+	private HabilitationMoyenTransport habilitationMoyenTransport;
+	
+
+	@ManyToMany(mappedBy = "listTechnicien", fetch = FetchType.LAZY)
+	private List<Maintenance> listMaintenance = new ArrayList<Maintenance>();
 	
 	public Technicien() {
 		super();
 	}
 
-	public Technicien(String diplome, String habilitationTechnique) {
+	public Technicien(String diplome, HabilitationMoyenTransport habilitationMoyenTransport) {
 		super();
 		this.diplome = diplome;
-		this.habilitationTechnique = habilitationTechnique;
+		this.habilitationMoyenTransport = habilitationMoyenTransport;
 	}
-
-	@Column
+	
 	public String getDiplome() {
 		return diplome;
 	}
@@ -34,19 +39,12 @@ public class Technicien extends Employe {
 		this.diplome = diplome;
 	}
 
-	@Column
-	public String getHabilitationTechnique() {
-		return habilitationTechnique;
+	public HabilitationMoyenTransport getHabilitationMoyenTransport() {
+		return habilitationMoyenTransport;
 	}
 
-	public void setHabilitationTechnique(String habilitationTechnique) {
-		this.habilitationTechnique = habilitationTechnique;
+	public void setHabilitationMoyenTransport(HabilitationMoyenTransport habilitationMoyenTransport) {
+		this.habilitationMoyenTransport = habilitationMoyenTransport;
 	}
-	
-	@ManyToMany
-	private List<MoyenTransport> listMoyenTransport = new ArrayList<MoyenTransport>();
-	
-	@ManyToMany
-	private List<Maintenance> listMaintenance = new ArrayList<Maintenance>();
 	
 }

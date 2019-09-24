@@ -3,7 +3,7 @@ package com.inti.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -14,6 +14,12 @@ public class Administrateur extends Employe {
 	
 	private String grade;
 	
+	@OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL)
+	private List<MissionChauffeur> listMissionChauffeur = new ArrayList<MissionChauffeur>();
+	
+	@OneToMany(mappedBy = "administrateur", cascade = CascadeType.ALL)
+	private List<Maintenance> listMaintenance = new ArrayList<Maintenance>();
+	
 	public Administrateur() {
 		super();
 	}
@@ -23,7 +29,6 @@ public class Administrateur extends Employe {
 		this.grade = grade;
 	}
 
-	@Column
 	public String getGrade() {
 		return grade;
 	}
@@ -31,11 +36,5 @@ public class Administrateur extends Employe {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	
-	@OneToMany(mappedBy = "administrateur")
-	private List<MissionChauffeur> listMissionChauffeur = new ArrayList<MissionChauffeur> ();
-	
-	@OneToMany(mappedBy = "administrateur")
-	private List<Maintenance> listMaintenance = new ArrayList<Maintenance> ();
 
 }

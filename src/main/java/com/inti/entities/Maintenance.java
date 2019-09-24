@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -18,12 +20,23 @@ import javax.persistence.TemporalType;
 @Entity
 public class Maintenance {
 	
-	private int idMaintenance;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idMaintenance;
 	@Temporal(TemporalType.DATE)
 	private Date dateMaintenance;
 	
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "AdminResponsableAjout")
 	private Administrateur administrateur;
+	@ManyToOne
+	@JoinColumn(name = "idMoyenTransport")
 	private MoyenTransport moyenTransport;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "AffectationMaintenance", joinColumns = @JoinColumn(name = "idMaintenance"),
+	inverseJoinColumns = @JoinColumn(name = "idEmploye"))
+		private List<Technicien> listTechnicien = new ArrayList<Technicien>();
 
 	public Maintenance() {
 		super();
@@ -34,17 +47,14 @@ public class Maintenance {
 		this.dateMaintenance = dateMaintenance;
 	}
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getIdMaintenance() {
+	public Long getIdMaintenance() {
 		return idMaintenance;
 	}
 
-	public void setIdMaintenance(int idMaintenance) {
+	public void setIdMaintenance(Long idMaintenance) {
 		this.idMaintenance = idMaintenance;
 	}
 
-	@Column
 	public Date getDateMaintenance() {
 		return dateMaintenance;
 	}
@@ -53,8 +63,6 @@ public class Maintenance {
 		this.dateMaintenance = dateMaintenance;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "AdminResponsableAjout")
 	public Administrateur getAdministrateur() {
 		return administrateur;
 	}
@@ -63,8 +71,6 @@ public class Maintenance {
 		this.administrateur = administrateur;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "idMoyenTransport")
 	public MoyenTransport getMoyenTransport() {
 		return moyenTransport;
 	}
@@ -72,8 +78,13 @@ public class Maintenance {
 	public void setMoyenTransport(MoyenTransport moyenTransport) {
 		this.moyenTransport = moyenTransport;
 	}
-	
-	@ManyToMany(mappedBy = "listMaintenance")
-	private List<Technicien> listTechnicien = new ArrayList<Technicien>();
+
+	public List<Technicien> getListTechnicien() {
+		return listTechnicien;
+	}
+
+	public void setListTechnicien(List<Technicien> listTechnicien) {
+		this.listTechnicien = listTechnicien;
+	}
 
 }

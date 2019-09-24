@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.inti.entities.Chauffeur;
 
 @Repository
-public interface ChauffeurRepository extends JpaRepository<Chauffeur, Integer> {
+public interface ChauffeurRepository extends JpaRepository<Chauffeur, Long> {
 
 }

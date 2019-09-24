@@ -2,39 +2,61 @@ package com.inti.entities;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "typeEmploye", discriminatorType = DiscriminatorType.STRING)
 public class Employe {
 	
-	private int idEmploye;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idEmploye;
 	private String nom;
 	private String prenom;
+	@Temporal(TemporalType.DATE)
 	private Date dateNaissance;
-	private int numeroTelephone;
+	private String numeroTelephone;
 	private String adresseMail;
 	
+	@Column(unique = true)
 	private String username;
 	private String password;
+	
+	@OneToMany(mappedBy = "employe")
+	private List<Conges> listConges = new ArrayList<Conges>();
+	
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name="profil", joinColumns = { @JoinColumn(name="id_employe", referencedColumnName = "idEmploye")},
+	inverseJoinColumns = {@JoinColumn(name="id_role", table = "role", referencedColumnName = "idRole")})
+	private Set<Role> listRole = new HashSet<Role>();
+	
 	
 	public Employe() {
 		super();
 	}
 
-	public Employe(String nom, String prenom, Date dateNaissance, int numeroTelephone, String adresseMail,
+	public Employe(String nom, String prenom, Date dateNaissance, String numeroTelephone, String adresseMail,
 			String username, String password) {
 		super();
 		this.nom = nom;
@@ -46,17 +68,14 @@ public class Employe {
 		this.password = password;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getIdEmploye() {
+	public Long getIdEmploye() {
 		return idEmploye;
 	}
 
-	public void setIdEmploye(int idEmploye) {
+	public void setIdEmploye(Long idEmploye) {
 		this.idEmploye = idEmploye;
 	}
 
-	@Column
 	public String getNom() {
 		return nom;
 	}
@@ -65,7 +84,6 @@ public class Employe {
 		this.nom = nom;
 	}
 
-	@Column
 	public String getPrenom() {
 		return prenom;
 	}
@@ -74,7 +92,6 @@ public class Employe {
 		this.prenom = prenom;
 	}
 
-	@Column
 	public Date getDateNaissance() {
 		return dateNaissance;
 	}
@@ -83,16 +100,14 @@ public class Employe {
 		this.dateNaissance = dateNaissance;
 	}
 
-	@Column
-	public int getNumeroTelephone() {
+	public String getNumeroTelephone() {
 		return numeroTelephone;
 	}
 
-	public void setNumeroTelephone(int numeroTelephone) {
+	public void setNumeroTelephone(String numeroTelephone) {
 		this.numeroTelephone = numeroTelephone;
 	}
 
-	@Column
 	public String getAdresseMail() {
 		return adresseMail;
 	}
@@ -100,8 +115,7 @@ public class Employe {
 	public void setAdresseMail(String adresseMail) {
 		this.adresseMail = adresseMail;
 	}
-	
-	@Column
+
 	public String getUsername() {
 		return username;
 	}
@@ -110,7 +124,6 @@ public class Employe {
 		this.username = username;
 	}
 
-	@Column
 	public String getPassword() {
 		return password;
 	}
@@ -119,7 +132,12 @@ public class Employe {
 		this.password = password;
 	}
 
-	@OneToMany(mappedBy = "employe")
-	private List<Conges> listConges = new ArrayList<Conges>();
+	public Set<Role> getListRole() {
+		return listRole;
+	}
+
+	public void setListRole(Set<Role> listRole) {
+		this.listRole = listRole;
+	}
 
 }

@@ -21,7 +21,7 @@ public class AdministrateurService implements IAdministrateurService {
 	}
 
 	@Override
-	public Administrateur findById(int idAdministrateur) {
+	public Administrateur findById(Long idAdministrateur) {
 		return administrateurRepository.findById(idAdministrateur).orElse(null);
 	}
 	
@@ -31,7 +31,7 @@ public class AdministrateurService implements IAdministrateurService {
 	}
 
 	@Override
-	public void deleteById(int idAdministrateur) {
+	public void deleteById(Long idAdministrateur) {
 		administrateurRepository.deleteById(idAdministrateur);
 	}
 

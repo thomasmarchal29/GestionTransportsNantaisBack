@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.inti.entities.Technicien;
 
 @Repository
-public interface TechnicienRepository extends JpaRepository<Technicien, Integer> {
+public interface TechnicienRepository extends JpaRepository<Technicien, Long> {
 
 }

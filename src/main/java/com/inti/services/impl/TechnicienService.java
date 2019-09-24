@@ -21,7 +21,7 @@ public class TechnicienService implements ITechnicienService {
 	}
 
 	@Override
-	public Technicien findById(int idTechnicien) {
+	public Technicien findById(Long idTechnicien) {
 		return technicienRepository.findById(idTechnicien).orElse(null);
 	}
 	
@@ -31,7 +31,7 @@ public class TechnicienService implements ITechnicienService {
 	}
 
 	@Override
-	public void deleteById(int idTechnicien) {
+	public void deleteById(Long idTechnicien) {
 		technicienRepository.deleteById(idTechnicien);
 	}
 

@@ -7,8 +7,8 @@ import com.inti.entities.Technicien;
 public interface ITechnicienService {
 	
 	public List<Technicien> findAll();
-	public Technicien findById(int idTechnicien);
+	public Technicien findById(Long idTechnicien);
 	public void save(Technicien technicien);
-	public void deleteById(int idTechnicien);
+	public void deleteById(Long idTechnicien);
 
 }

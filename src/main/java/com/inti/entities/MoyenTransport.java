@@ -4,12 +4,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,12 +16,20 @@ import javax.persistence.TemporalType;
 @Entity
 public class MoyenTransport {
 	
-	private int idMoyenTransport;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idMoyenTransport;
 	private TypeMoyenTransport typeMoyenTransport;
 	private String immatriculation;
 	private String vetuste;
 	@Temporal(TemporalType.DATE)
 	private Date dateDerniereRevision;
+	
+	@OneToMany(mappedBy = "moyenTransport", cascade = CascadeType.ALL)
+	private List<MissionChauffeur> listMissionChauffeur = new ArrayList<MissionChauffeur>();
+	
+	@OneToMany(mappedBy = "moyenTransport", cascade = CascadeType.ALL)
+	private List<Maintenance> listMaintenance = new ArrayList<Maintenance>();
 	
 	public MoyenTransport() {
 		super();
@@ -37,17 +44,14 @@ public class MoyenTransport {
 		this.dateDerniereRevision = dateDerniereRevision;
 	}
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getIdMoyenTransport() {
+	public Long getIdMoyenTransport() {
 		return idMoyenTransport;
 	}
 
-	public void setIdMoyenTransport(int idMoyenTransport) {
+	public void setIdMoyenTransport(Long idMoyenTransport) {
 		this.idMoyenTransport = idMoyenTransport;
 	}
 
-	@Column
 	public TypeMoyenTransport getTypeMoyenTransport() {
 		return typeMoyenTransport;
 	}
@@ -56,7 +60,6 @@ public class MoyenTransport {
 		this.typeMoyenTransport = typeMoyenTransport;
 	}
 
-	@Column
 	public String getImmatriculation() {
 		return immatriculation;
 	}
@@ -65,7 +68,6 @@ public class MoyenTransport {
 		this.immatriculation = immatriculation;
 	}
 
-	@Column
 	public String getVetuste() {
 		return vetuste;
 	}
@@ -74,7 +76,6 @@ public class MoyenTransport {
 		this.vetuste = vetuste;
 	}
 
-	@Column
 	public Date getDateDerniereRevision() {
 		return dateDerniereRevision;
 	}
@@ -82,17 +83,5 @@ public class MoyenTransport {
 	public void setDateDerniereRevision(Date dateDerniereRevision) {
 		this.dateDerniereRevision = dateDerniereRevision;
 	}
-	
-	@ManyToMany(mappedBy = "listMoyenTransport")
-	private List<Chauffeur> listChauffeur = new ArrayList<Chauffeur>();
-	
-	@ManyToMany(mappedBy = "listMoyenTransport")
-	private List<Technicien> listTechnicien = new ArrayList<Technicien>();
-	
-	@OneToMany(mappedBy = "moyenTransport")
-	private List<MissionChauffeur> listMissionChauffeur = new ArrayList<MissionChauffeur>();
-	
-	@OneToMany(mappedBy = "moyenTransport")
-	private List<Maintenance> listMaintenance = new ArrayList<Maintenance>();
 
 }

@@ -7,8 +7,8 @@ import com.inti.entities.Administrateur;
 public interface IAdministrateurService {
 	
 	public List<Administrateur> findAll();
-	public Administrateur findById(int idAdministrateur);
+	public Administrateur findById(Long idAdministrateur);
 	public void save(Administrateur administrateur);
-	public void deleteById(int idAdministrateur);
+	public void deleteById(Long idAdministrateur);
 
 }

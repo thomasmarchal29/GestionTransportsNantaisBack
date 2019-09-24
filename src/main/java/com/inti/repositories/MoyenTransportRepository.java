@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.inti.entities.MoyenTransport;
 
 @Repository
-public interface MoyenTransportRepository extends JpaRepository<MoyenTransport, Integer> {
+public interface MoyenTransportRepository extends JpaRepository<MoyenTransport, Long> {
 
 }

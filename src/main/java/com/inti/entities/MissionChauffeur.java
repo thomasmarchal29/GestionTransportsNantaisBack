@@ -1,16 +1,13 @@
 package com.inti.entities;
 
-import java.util.ArrayList;
+import java.sql.Time;
 import java.util.Date;
-import java.util.List;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,36 +15,43 @@ import javax.persistence.TemporalType;
 @Entity
 public class MissionChauffeur {
 	
-	private int idMissionChauffeur;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long idMissionChauffeur;
 	@Temporal(TemporalType.DATE)
 	private Date dateMission;
-	@Temporal(TemporalType.TIME)
-	private Date horaireMission;
+	private Time horaireMission;
+	private LigneNantes ligneNantes;
 	
+	@ManyToOne
+	@JoinColumn(name = "AdminResponsableAjout")
 	private Administrateur administrateur;
+	@ManyToOne
+	@JoinColumn(name = "idMoyenTransport")
 	private MoyenTransport moyenTransport;
+	@ManyToOne
+	@JoinColumn(name = "idChauffeur")
+	private Chauffeur chauffeur;
 	
 	public MissionChauffeur() {
 		super();
 	}
-
-	public MissionChauffeur(Date dateMission, Date horaireMission) {
+	
+	public MissionChauffeur(Date dateMission, Time horaireMission, LigneNantes ligneNantes) {
 		super();
 		this.dateMission = dateMission;
 		this.horaireMission = horaireMission;
+		this.ligneNantes = ligneNantes;
 	}
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public int getIdMissionChauffeur() {
+
+	public Long getIdMissionChauffeur() {
 		return idMissionChauffeur;
 	}
 
-	public void setIdMissionChauffeur(int idMissionChauffeur) {
+	public void setIdMissionChauffeur(Long idMissionChauffeur) {
 		this.idMissionChauffeur = idMissionChauffeur;
 	}
 
-	@Column
 	public Date getDateMission() {
 		return dateMission;
 	}
@@ -56,17 +60,22 @@ public class MissionChauffeur {
 		this.dateMission = dateMission;
 	}
 
-	@Column
-	public Date getHoraireMission() {
+	public Time getHoraireMission() {
 		return horaireMission;
 	}
 
-	public void setHoraireMission(Date horaireMission) {
+	public void setHoraireMission(Time horaireMission) {
 		this.horaireMission = horaireMission;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "AdminResponsableAjout")
+	public LigneNantes getLigneNantes() {
+		return ligneNantes;
+	}
+
+	public void setLigneNantes(LigneNantes ligneNantes) {
+		this.ligneNantes = ligneNantes;
+	}
+
 	public Administrateur getAdministrateur() {
 		return administrateur;
 	}
@@ -75,8 +84,6 @@ public class MissionChauffeur {
 		this.administrateur = administrateur;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name = "idMoyenTransport")
 	public MoyenTransport getMoyenTransport() {
 		return moyenTransport;
 	}
@@ -85,7 +92,12 @@ public class MissionChauffeur {
 		this.moyenTransport = moyenTransport;
 	}
 
-	@ManyToMany(mappedBy = "listMissionChauffeur")
-	private List<Chauffeur> listChauffeur = new ArrayList<Chauffeur>();
+	public Chauffeur getChauffeur() {
+		return chauffeur;
+	}
+
+	public void setChauffeur(Chauffeur chauffeur) {
+		this.chauffeur = chauffeur;
+	}
 
 }

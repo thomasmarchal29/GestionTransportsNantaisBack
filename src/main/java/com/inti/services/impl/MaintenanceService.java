@@ -21,7 +21,7 @@ public class MaintenanceService implements IMaintenanceService {
 	}
 
 	@Override
-	public Maintenance findById(int idMaintenance) {
+	public Maintenance findById(Long idMaintenance) {
 		return maintenanceRepository.findById(idMaintenance).orElse(null);
 	}
 	
@@ -31,8 +31,18 @@ public class MaintenanceService implements IMaintenanceService {
 	}
 
 	@Override
-	public void deleteById(int idMaintenance) {
+	public void deleteById(Long idMaintenance) {
 		maintenanceRepository.deleteById(idMaintenance);
+	}
+
+	@Override
+	public List<Maintenance> findByIdEmploye(Long idEmploye) {
+		return maintenanceRepository.findByIdEmploye(idEmploye);
+	}
+
+	@Override
+	public List<Maintenance> findByAdmin(Long idEmploye) {
+		return maintenanceRepository.findByAdmin(idEmploye);
 	}
 
 }

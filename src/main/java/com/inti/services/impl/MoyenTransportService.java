@@ -21,7 +21,7 @@ public class MoyenTransportService implements IMoyenTransportService {
 	}
 
 	@Override
-	public MoyenTransport findById(int idMoyenTransport) {
+	public MoyenTransport findById(Long idMoyenTransport) {
 		return moyenTransportRepository.findById(idMoyenTransport).orElse(null);
 	}
 	
@@ -31,7 +31,7 @@ public class MoyenTransportService implements IMoyenTransportService {
 	}
 
 	@Override
-	public void deleteById(int idMoyenTransport) {
+	public void deleteById(Long idMoyenTransport) {
 		moyenTransportRepository.deleteById(idMoyenTransport);
 	}
 

@@ -21,7 +21,7 @@ public class CongesService implements ICongesService {
 	}
 
 	@Override
-	public Conges findById(int idConges) {
+	public Conges findById(Long idConges) {
 		return congesRepository.findById(idConges).orElse(null);
 	}
 	
@@ -31,8 +31,13 @@ public class CongesService implements ICongesService {
 	}
 
 	@Override
-	public void deleteById(int idConges) {
+	public void deleteById(Long idConges) {
 		congesRepository.deleteById(idConges);
+	}
+
+	@Override
+	public List<Conges> findByIdEmploye(Long idEmploye) {
+		return congesRepository.findByIdEmploye(idEmploye);
 	}
 
 }

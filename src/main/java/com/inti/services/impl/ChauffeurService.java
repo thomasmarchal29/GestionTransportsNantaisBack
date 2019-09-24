@@ -21,7 +21,7 @@ public class ChauffeurService implements IChauffeurService {
 	}
 
 	@Override
-	public Chauffeur findById(int idChauffeur) {
+	public Chauffeur findById(Long idChauffeur) {
 		return chauffeurRepository.findById(idChauffeur).orElse(null);
 	}
 	
@@ -31,7 +31,7 @@ public class ChauffeurService implements IChauffeurService {
 	}
 
 	@Override
-	public void deleteById(int idChauffeur) {
+	public void deleteById(Long idChauffeur) {
 		chauffeurRepository.deleteById(idChauffeur);
 	}
 
