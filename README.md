@@ -21,7 +21,7 @@ To install and run this project you need as requirements:
 * [Java JDK and JRE](https://www.java.com/fr/download/) - Java 8 or higher version
 * [Maven](https://maven.apache.org/) - Maven 2 or higher version
 * [Eclipse](https://www.eclipse.org/) - 2019-09 R (4.13.0) version
-* [XAMPP](https://www.apachefriends.org/fr/index.html) - v3.4.2 or any other database management system
+* [XAMPP](https://www.apachefriends.org/fr/index.html) - v3.4.2 or any other analogous software
 
 ### Setting up
 
@@ -57,15 +57,11 @@ $ mvn spring-boot:run
 
 ## Technologies
 
-Java EE - The web framework used
-
-Spring Boot - The framework used for Microservice Architecture
-
-Spring Data JPA - The framework used in the persistence Layer
-
-Spring WebService - The framework used in the Rest Controller Layer
-
-Maven - Dependency Management
+* [Java EE](https://www.oracle.com/technetwork/java/javaee/overview/index.html) - The web framework used
+* [Spring Boot](https://spring.io/projects/spring-boot) - The framework used for Microservice Architecture
+* [Spring Data JPA](https://spring.io/projects/spring-data-jpa) - The framework used in the persistence Layer
+* [Spring WebService](https://spring.io/projects/spring-ws) - The framework used in the Rest Controller Layer
+* [Maven](https://maven.apache.org/) - Dependency Management
 
 ## Authors
 
